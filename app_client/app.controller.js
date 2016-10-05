@@ -3,8 +3,8 @@
         .module('app')
         .controller('appCtrl', ctrl);
 
-    ctrl.$inject = ['$scope', '$localStorage'];
-    function ctrl($scope, $localStorage) {
+    ctrl.$inject = ['$scope', '$localStorage', '$filter'];
+    function ctrl($scope, $localStorage, $filter) {
         var vm = this;
         vm.info = {
             title: '雅思分数计算器 - IELTS Band Score Calculator',
@@ -456,7 +456,7 @@
             });
             vm.resultScore = sum / 4;
 
-            var str = "我的雅思总分[" + vm.resultScore + "] - 雅思分数计算器 - ";
+            var str = "我的雅思总分[" + $filter('score')(vm.resultScore) + "] - 雅思分数计算器 - ";
             vm.items.arr.forEach(function(item) {
                 str += item.name + ":" + item.score + "/";
             });
