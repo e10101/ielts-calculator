@@ -1,0 +1,5 @@
+.idea/
+.git/
+node_modules/
+bower_components/
+dump.rdb
