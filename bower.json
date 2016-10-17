@@ -19,6 +19,7 @@
     "bootstrap": "^3.3.7",
     "angular": "angularjs#^1.5.8",
     "flat-ui": "^2.3.0",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "angular-ui-router": "^0.3.1"
   }
 }
