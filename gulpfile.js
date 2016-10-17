@@ -85,7 +85,7 @@ gulp.task('ng-html2js', function() {
     return gulp.src(["app_client/**/*.html", "!app_client/index.html"])
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(ngHtml2Js({
-            moduleName: "typingApp",
+            moduleName: "app",
             prefix: "/partials/"
         }))
         .pipe(concat("partials.min.js"))
@@ -97,7 +97,7 @@ gulp.task('ng-html2js', function() {
             //     drop_console: true
             // }
         }))
-        .pipe(gulp.dest('public/javascripts'))
+        .pipe(gulp.dest('public/js'))
         .pipe(browserSync.reload({
             stream: true
         }));
@@ -123,15 +123,16 @@ gulp.task('nodemon', function (cb) {
 });
 
 // Watch Task that compiles LESS and watches for HTML or JS changes and reloads with browserSync
-gulp.task('dev', ['browserSync', 'minify-js', 'minify-html', 'sass'], function() {
+gulp.task('dev', ['browserSync', 'minify-js', 'minify-html', 'sass', 'ng-html2js'], function() {
     // gulp.watch('src/less/*.less', ['less']);
     // gulp.watch('css/*.css', ['minify-css']);
     gulp.watch('app_client/**/*.js', ['minify-js']);
     gulp.watch('app_client/**/*.scss', ['sass']);
+    gulp.watch('src/**/*.scss', ['sass']);
     gulp.watch('app_client/**/*.html', ['minify-html']);
     gulp.watch('app_client/**/*.html', ['ng-html2js']);
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('public/*.html', browserSync.reload);
     gulp.watch('public/js/*.js', browserSync.reload);
-    gulp.watch('public/css/*.css', browserSync.reload);
+    // gulp.watch('public/css/*.css', browserSync.reload);
 });

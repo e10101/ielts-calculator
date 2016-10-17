@@ -77,3 +77,19 @@ body {
     border-bottom: 0;
   }
 }
+
+.input-word {
+  border: none;
+  background-color: #aec8ee;
+  padding: 2px -1px 2px 1px;
+  margin: 5px 1px;
+}
+
+.input-ok {
+  background-color: #1abc9c;
+  color: white;
+}
+
+.monospaced {
+  font-family: monospace;
+}
