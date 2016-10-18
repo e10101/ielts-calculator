@@ -19,7 +19,11 @@
             '<p>本应用由<a href="http://sjz.io">勇创软件工作室</a>开发</p>'
         };
 
-        vm.content= "Well now, once the problem of projection had been solved, the next challenge for the inventors was to make the films longer and more interesting. A continuing problem at the time was that the films had a tendency to break when they were being played - a problem which was caused by the tension between the two wheels, or 'reels' as they are called, which hold the film. Now this problem was solved by two American brothers. They developed the 'Lantham Loop', which was the simple addition of a third reel between the two main reels, and this took all the tension away with the result that the film stopped snapping.";
+        vm.content= "sult th" +
+            "at the fil" +
+            "m stopp" +
+            "ed snapp" +
+            "ing.";
         vm.isShowContent = true;
         vm.items = [];
 
@@ -29,23 +33,56 @@
             // vm.items = items;
 
             var items = [], matches;
-            var regex = /([a-zA-Z]+)([^a-zA-Z]*)/g;
+            var regex = /([^a-zA-Z\r\n]*)([a-zA-Z]+)([^a-zA-Z\r\n]*)([\r\n]*)/g;
 
-            var matches2 = content.match(regex);
-            console.log('matches', matches2);
+            // var matches2 = content.match(regex);
+            // console.log('matches', matches2);
             while (matches = regex.exec(content)) {
                 // console.log('xx', matches);
-                var word = matches[1];
-                var punctuation = matches[2];
-                items.push({
-                    type: 'word',
-                    val: word
-                });
+                var word = matches[2];
+                // var punctuations = [];
+                var punctuation;
+                punctuation = matches[1];
                 if (punctuation !== '' && punctuation !== ' ') {
-                    console.log(punctuation);
+                    console.log('punctuation', punctuation);
                     items.push({
                         type: 'punctuation',
                         val: punctuation
+                    });
+                }
+
+                if (word) {
+                    items.push({
+                        type: 'word',
+                        val: word
+                    });
+                }
+                // punctuations.push(matches[1]);
+                // punctuations.push(matches[3]);
+                // var punctuation2 = matches[3];
+                var lineBreak = matches[4];
+                punctuation = matches[3];
+                if (punctuation !== '' && punctuation !== ' ') {
+                    console.log('punctuation', punctuation);
+                    items.push({
+                        type: 'punctuation',
+                        val: punctuation
+                    });
+                }
+                // punctuations.forEach(function(punctuation) {
+                //     if (punctuation !== '' && punctuation !== ' ') {
+                //         console.log('punctuation', punctuation);
+                //         items.push({
+                //             type: 'punctuation',
+                //             val: punctuation
+                //         });
+                //     }
+                // });
+
+                if (lineBreak) {
+                    console.log('line break', lineBreak);
+                    items.push({
+                        type: 'lineBreak'
                     });
                 }
             }

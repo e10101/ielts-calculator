@@ -3,7 +3,7 @@
         听写内容
     </div>
     <div class="panel-body monospaced">
-        <div ng-repeat="item in vm.items track by $index" style="display: inline-block" enter-as-tab data-type="{{item.type}}">
+        <div ng-repeat="item in vm.items" ng-class="{'inline-block': item.type !== 'lineBreak'}" enter-as-tab data-type="{{item.type}}">
             <!--<div class="label label-default" ng-class="{'label-info': item.type == 'word'}">{{item.val}}</div>-->
             <input class="input-word" type="{{item.type == 'word' ? 'text' : 'hidden'}}" size="{{item.val.length}}"
                    ng-model="item.input" ng-class="{'input-ok': item.input == item.val}">
@@ -28,4 +28,7 @@
             <button class="btn btn-block btn-default" ng-click="vm.isShowContent = !vm.isShowContent">显示隐藏文本</button>
         </p>
     </div>
+</div>
+<div style="display: none;">
+    <pre>{{vm.items | json}}</pre>
 </div>
